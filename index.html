@@ -225,7 +225,7 @@
                                                 <option value="Rasgo de Luz">Rasgo de Luz</option>
                                                 <option value="Cortineiro Embutido">Cortineiro Embutido</option>
                                                 <option value="Cortineiro Sobreposto">Cortineiro Sobreposto</option>
-                                                <option value="Nicho Embutido">Nicho Embutido (un)</option>
+                                                <option value="Nicho Embutido">Nicho Embutido</option>
                                                 <option value="Painel de TV 3D">Painel de TV 3D</option>
                                                 <option value="Cabeceira 3D">Cabeceira 3D</option>
                                                 <option value="Boiserie">Boiserie</option>
@@ -240,9 +240,21 @@
                                 <div class="grid grid-cols-1 gap-4">
                                     <div>
                                         <label class="field-label">Metragem / Quantidade</label>
-                                        <div class="input-group">
-                                            <input type="number" id="areaInput" placeholder="0" min="0.1" step="0.1" class="custom-input font-bold text-lg text-brand">
-                                            <i class="fa-solid fa-ruler-combined input-icon"></i>
+                                        <div class="flex gap-2">
+                                            <div class="input-group flex-1">
+                                                <input type="number" id="areaInput" placeholder="0" min="0.1" step="0.1" class="custom-input font-bold text-lg text-brand">
+                                                <i class="fa-solid fa-ruler-combined input-icon"></i>
+                                            </div>
+                                            <!-- SELETOR DE UNIDADE NOVO -->
+                                            <div class="w-24">
+                                                <div class="input-group h-full">
+                                                    <select id="unitInput" class="custom-input !px-2 text-center font-bold text-slate-600 h-full !py-0 cursor-pointer">
+                                                        <option value="m²">m²</option>
+                                                        <option value="m">m</option>
+                                                        <option value="un">un</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div>
@@ -326,7 +338,7 @@
         </div>
     </div>
 
-    <!-- DASHBOARD RESULTADOS (Z-INDEX 9999 para cobrir menu do WP) -->
+    <!-- DASHBOARD RESULTADOS -->
     <div id="resultsDashboard" class="hidden fixed inset-0 z-[9999] bg-[#F8FAFC] overflow-y-auto animate-slide-up w-full h-full">
         <div class="max-w-md mx-auto p-6 min-h-screen flex flex-col">
             <div class="flex justify-between items-center mb-8">
@@ -379,9 +391,8 @@
                 </div>
             </div>
 
-            <!-- Botões de Ação (Sessão Escura) -->
+            <!-- Botões de Ação -->
             <div class="bg-brand p-6 rounded-3xl shadow-xl mt-6 relative overflow-hidden">
-                <!-- Elemento decorativo de fundo -->
                 <div class="absolute -right-6 -bottom-6 text-white/5 text-[8rem] pointer-events-none">
                     <i class="fa-solid fa-share-nodes"></i>
                 </div>
@@ -411,7 +422,7 @@
         </div>
     </div>
 
-    <!-- CONFIGURAÇÕES (MODAL Z-INDEX 9999) -->
+    <!-- CONFIGURAÇÕES -->
     <div id="configModal" class="hidden fixed inset-0 z-[9999] bg-[#F8FAFC] overflow-y-auto w-full h-full">
         <div class="max-w-md mx-auto p-6 min-h-screen">
             <div class="flex justify-between items-center mb-8">
@@ -459,13 +470,12 @@
                     </div>
                     
                     <p class="text-[11px] text-slate-500 mb-4 bg-slate-100 p-3 rounded-lg border border-slate-200">
-                        <i class="fa-solid fa-circle-info mr-1"></i> Defina quanto você cobra por m² ou unidade. O sistema usará este valor automaticamente.
+                        <i class="fa-solid fa-circle-info mr-1"></i> Defina quanto você cobra por m², metro linear ou unidade.
                     </p>
                     <div class="grid grid-cols-1 gap-2 max-h-[50vh] overflow-y-auto pr-2" id="servicePriceTable"></div>
                 </div>
             </div>
 
-            <!-- Custos Ocultos (Fundo de cálculo) -->
             <input type="hidden" id="priceSheet" value="38.00"><input type="hidden" id="priceProfile" value="18.00"><input type="hidden" id="priceScrew" value="15.00"><input type="hidden" id="priceCompound" value="45.00"><input type="hidden" id="priceTape" value="25.00"><input type="hidden" id="pricePlaque" value="3.50"><input type="hidden" id="pricePlasterBag" value="28.00"><input type="hidden" id="priceWire" value="18.00"><input type="hidden" id="priceSisal" value="12.00">
 
             <button type="button" onclick="savePreferences(); fecharConfig();" class="w-full bg-brand hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl shadow-lg transition-all mb-10">
@@ -474,7 +484,7 @@
         </div>
     </div>
 
-    <!-- HISTÓRICO (MODAL Z-INDEX 9999) -->
+    <!-- HISTÓRICO -->
     <div id="historyModal" class="hidden fixed inset-0 z-[9999] bg-[#F8FAFC] overflow-y-auto w-full h-full">
         <div class="max-w-md mx-auto p-6 min-h-screen">
             <div class="flex justify-between items-center mb-8">
@@ -529,7 +539,7 @@
                         <thead>
                             <tr style="background: #F1F5F9; color: #334155;">
                                 <th style="padding: 12px 15px; text-align: left; border-radius: 6px 0 0 6px;">Descrição do Serviço</th>
-                                <th style="padding: 12px 15px; text-align: center;">Área/Qtd</th>
+                                <th style="padding: 12px 15px; text-align: center;">Qtd/Medida</th>
                                 <th style="padding: 12px 15px; text-align: right; border-radius: 0 6px 6px 0;">Valor Estimado</th>
                             </tr>
                         </thead>
@@ -560,7 +570,7 @@
 
 </div>
 
-<!-- SCRIPTS LÓGICOS (FORA DA DIV PRINCIPAL PARA SEGURANÇA) -->
+<!-- SCRIPTS LÓGICOS -->
 <script>
     let services = [];
     let calculationResult = null;
@@ -584,7 +594,7 @@
     // --- PREÇOS ---
     function initPriceTable() {
         const select = document.getElementById('serviceTypeInput');
-        if(!select) return; // Segurança contra erro
+        if(!select) return;
         const tableContainer = document.getElementById('servicePriceTable');
         if(!tableContainer) return;
         
@@ -597,6 +607,35 @@
                 row.innerHTML = `<label class="text-xs text-slate-600 font-bold w-2/3 truncate">${opt.text}</label><input type="number" id="${inputId}" placeholder="0.00" class="bg-slate-50 text-slate-800 font-mono text-xs p-1.5 rounded border border-slate-200 w-24 text-right focus:outline-none focus:border-slate-800" onchange="savePreferences()">`;
                 tableContainer.appendChild(row);
             }
+        });
+    }
+
+    // --- LÓGICA DE UNIDADES (NOVO) ---
+    const defaultUnits = {
+        'Moldura de Gesso': 'm',
+        'Sanca Aberta Gesso': 'm',
+        'Sanca Fechada Gesso': 'm',
+        'Cortineiro Gesso': 'm',
+        'Sanca Ilha': 'm',
+        'Sanca Invertida': 'm',
+        'Rasgo de Luz': 'm',
+        'Cortineiro Embutido': 'm',
+        'Cortineiro Sobreposto': 'm',
+        'Boiserie': 'm',
+        'Rodateto Decorado': 'm',
+        'Nicho Embutido': 'un',
+        // O restante assume m²
+    };
+
+    // Evento para mudar unidade automaticamente
+    const serviceSelect = document.getElementById('serviceTypeInput');
+    const unitSelect = document.getElementById('unitInput');
+    
+    if(serviceSelect && unitSelect) {
+        serviceSelect.addEventListener('change', function() {
+            const val = this.value;
+            const unit = defaultUnits[val] || 'm²';
+            unitSelect.value = unit;
         });
     }
 
@@ -617,13 +656,11 @@
             companyName: document.getElementById('companyName').value,
             profitMargin: document.getElementById('profitMargin').value,
             servicePrices: servicePrices,
-            // Salvando ocultos
             sheet: document.getElementById('priceSheet').value,
             profile: document.getElementById('priceProfile').value,
             screw: document.getElementById('priceScrew').value,
             compound: document.getElementById('priceCompound').value
         };
-        // Salva custo se estiver na tela
         const mainTotalExtra = document.getElementById('totalExtraCost');
         if(mainTotalExtra) preferences.totalExtraCost = mainTotalExtra.value;
 
@@ -678,36 +715,24 @@
         carregarListaHistorico();
     }
 
-    // CORREÇÃO AQUI: Restaurar o formulário completo ao carregar do histórico
     function carregarHistorico(id) {
         const history = JSON.parse(localStorage.getItem('gessoMasterHistory') || '[]');
         const item = history.find(i => i.id === id);
         if (item) {
-            // 1. Atualizar Estado Global
             calculationResult = item.data;
-            services = item.data.servicesDetail || []; // Restaura a lista de serviços para memória
-
-            // 2. Preencher Inputs do Formulário (Para edição futura)
+            services = item.data.servicesDetail || [];
             document.getElementById('clientName').value = item.data.clientName || '';
             document.getElementById('clientPhone').value = item.data.clientPhone || '';
             document.getElementById('clientAddress').value = item.data.clientAddress || '';
-            
-            // Recalcula o custo extra para preencher o input (Venda - Lucro = Custo Total)
             const totalCostReal = (item.data.salePrice || 0) - (item.data.netProfit || 0);
             const extraCostInput = document.getElementById('totalExtraCost');
             if(extraCostInput) extraCostInput.value = totalCostReal > 0 ? totalCostReal : '';
-
-            // 3. Atualizar Lista Visual de Serviços
             renderServicesList();
-
-            // 4. Exibir Resultados
             document.getElementById('displayClientPrice').innerText = formatMoney(calculationResult.salePrice);
             document.getElementById('displayProfit').innerText = formatMoney(calculationResult.netProfit);
             document.getElementById('detailSale').innerText = formatMoney(calculationResult.salePrice);
             document.getElementById('detailCost').innerText = formatMoney(totalCostReal);
             document.getElementById('detailProfitFinal').innerText = formatMoney(calculationResult.netProfit);
-            
-            // 5. Trocar Tela
             document.getElementById('historyModal').classList.add('hidden');
             mostrarResultados();
         }
@@ -733,15 +758,28 @@
         const typeSelect = document.getElementById('serviceTypeInput');
         const areaInput = document.getElementById('areaInput');
         const customRateInput = document.getElementById('customRateInput');
+        const unitInput = document.getElementById('unitInput'); // Captura Unidade
+        
         const type = typeSelect.value;
         const text = typeSelect.options[typeSelect.selectedIndex].text;
         const area = parseFloat(areaInput.value);
         const customRate = parseFloat(customRateInput.value);
+        const unit = unitInput.value || 'm²'; // Padrão m²
         
-        if (!area || area <= 0) { alert("Metragem inválida."); return; }
+        if (!area || area <= 0) { alert("Quantidade/Metragem inválida."); return; }
         
         const hasCustomRate = !isNaN(customRate) && customRate > 0;
-        services.push({ id: Date.now(), type, typeText: text, area, isCustom: false, customRate: hasCustomRate ? customRate : null });
+        
+        services.push({ 
+            id: Date.now(), 
+            type, 
+            typeText: text, 
+            area, 
+            unit, // Salva unidade
+            isCustom: false, 
+            customRate: hasCustomRate ? customRate : null 
+        });
+        
         areaInput.value = ''; customRateInput.value = ''; areaInput.focus(); renderServicesList();
     }
 
@@ -750,12 +788,12 @@
         const price = parseFloat(document.getElementById('customPriceInput').value);
         if (!name) { alert("Nome inválido."); return; }
         if (isNaN(price) || price < 0) { alert("Valor inválido."); return; }
-        services.push({ id: Date.now(), type: 'Personalizado', typeText: name, area: 1, isCustom: true, fixedPrice: price });
+        // Personalizados são tratados como 'verba' ou 'serviço', sem unidade específica de cálculo, mas podemos pôr 'vb' ou 'un' se quiser.
+        services.push({ id: Date.now(), type: 'Personalizado', typeText: name, area: 1, unit: 'un', isCustom: true, fixedPrice: price });
         document.getElementById('customNameInput').value = ''; document.getElementById('customPriceInput').value = '';
         document.getElementById('customNameInput').focus(); renderServicesList();
     }
 
-    // NOVA FUNÇÃO: EDITAR SERVIÇO
     function editarServico(id) {
         const item = services.find(s => s.id === id);
         if (!item) return;
@@ -768,19 +806,17 @@
         } else {
             toggleServiceTab('catalogo');
             const select = document.getElementById('serviceTypeInput');
-            let optionExists = false;
             for (let i = 0; i < select.options.length; i++) {
                 if (select.options[i].value === item.type) {
                     select.selectedIndex = i;
-                    optionExists = true;
                     break;
                 }
             }
             document.getElementById('areaInput').value = item.area;
             document.getElementById('customRateInput').value = item.customRate || '';
+            document.getElementById('unitInput').value = item.unit || 'm²'; // Restaura unidade
             document.getElementById('areaInput').focus();
         }
-
         removerServico(id);
     }
 
@@ -800,19 +836,30 @@
         services.forEach(item => {
             let displayValue = '', iconClass = '', borderClass = '';
             const storedPrice = servicePrices[item.type] ? parseFloat(servicePrices[item.type]) : 0;
+            const unitLabel = item.unit || 'm²'; // Label para exibição
+
             if (item.isCustom) {
                 displayValue = formatMoney(item.fixedPrice);
                 iconClass = 'fa-pen-to-square text-detail bg-blue-50'; borderClass = 'border-blue-100'; totalCustom += item.fixedPrice;
             } else {
                 totalArea += item.area;
-                if(item.customRate) { displayValue = `${item.area} m² x ${formatMoney(item.customRate)}`; borderClass = 'border-slate-300'; iconClass = 'fa-tag text-slate-700 bg-slate-100'; }
-                else if (storedPrice > 0) { displayValue = `${item.area} m² x ${formatMoney(storedPrice)} (Tab)`; borderClass = 'border-slate-300'; iconClass = 'fa-table text-slate-700 bg-slate-100'; }
-                else { displayValue = `${item.area} m² (Calc)`; iconClass = 'fa-calculator text-slate-500 bg-slate-100'; borderClass = 'border-slate-200'; }
+                // Exibe a unidade correta (m², m, un)
+                if(item.customRate) { 
+                    displayValue = `${item.area} ${unitLabel} x ${formatMoney(item.customRate)}`; 
+                    borderClass = 'border-slate-300'; iconClass = 'fa-tag text-slate-700 bg-slate-100'; 
+                }
+                else if (storedPrice > 0) { 
+                    displayValue = `${item.area} ${unitLabel} x ${formatMoney(storedPrice)} (Tab)`; 
+                    borderClass = 'border-slate-300'; iconClass = 'fa-table text-slate-700 bg-slate-100'; 
+                }
+                else { 
+                    displayValue = `${item.area} ${unitLabel} (Calc)`; 
+                    iconClass = 'fa-calculator text-slate-500 bg-slate-100'; borderClass = 'border-slate-200'; 
+                }
             }
-            // Botão de Editar Adicionado
             list.innerHTML += `<div class="bg-white p-4 rounded-xl border ${borderClass} flex justify-between items-center group transition-all shadow-sm"><div class="flex items-center gap-4"><div class="${iconClass} w-10 h-10 rounded-full flex items-center justify-center text-sm"><i class="fa-solid ${item.isCustom ? 'fa-pen' : (item.customRate ? 'fa-tag' : (storedPrice > 0 ? 'fa-table' : 'fa-calculator'))}"></i></div><div><div class="text-slate-800 font-bold text-sm">${item.typeText}</div><div class="text-slate-400 text-xs mt-0.5"><span class="font-mono text-slate-500 font-bold">${displayValue}</span></div></div></div><div class="flex gap-2"><button onclick="editarServico(${item.id})" class="text-slate-400 hover:text-blue-600 bg-slate-50 hover:bg-blue-50 p-2 rounded-lg transition-all" title="Editar"><i class="fa-solid fa-pen"></i></button><button onclick="removerServico(${item.id})" class="text-slate-400 hover:text-red-500 bg-slate-50 hover:bg-red-50 p-2 rounded-lg transition-all" title="Remover"><i class="fa-solid fa-trash-can"></i></button></div></div>`;
         });
-        totalDisplay.innerText = `Área: ${totalArea.toFixed(2)} m² | Extras: ${formatMoney(totalCustom)}`;
+        totalDisplay.innerText = `Qtd Total: ${totalArea.toFixed(2)} | Extras: ${formatMoney(totalCustom)}`;
     }
 
     // --- CÁLCULO FINANCEIRO ---
@@ -828,19 +875,19 @@
 
         services.forEach(s => {
             if(!s.isCustom) {
+                // Lógica Mantida: Separa "seco" e "molhado" para estimativa de material
+                // Nota: Mesmo sendo linear, entra na soma de 'area' para estimativa de gesso/parafuso
                 const wetKeywords = ['Plaquinha', 'Aramado', 'Beiral', 'Gesso 3D', 'Moldura', 'Gesso', 'Boiserie', 'Rodateto'];
                 const isWet = wetKeywords.some(keyword => s.typeText.includes(keyword) || s.type.includes(keyword));
                 if(isWet) plaquinhaArea += s.area; else drywallArea += s.area;
             }
         });
 
-        // PREÇOS FIXOS OCULTOS PARA ESTIMATIVA DE MATERIAL
         const pricesDrywall = { sheet: 38.00, profile: 18.00, screw: 15.00, tape: 25.00, compound: 45.00 };
         const pricesPlaque = { plaque: 3.50, plaster: 28.00, wire: 18.00, sisal: 12.00 };
 
         let costMaterialsDrywall = 0, costMaterialsPlaque = 0;
 
-        // Cálculo estimativo de material para abater do lucro
         if(drywallArea > 0) {
             const qtdSheets = Math.ceil((drywallArea / 2.88) * 1.05); const qtdProfiles = Math.ceil((drywallArea * 2) / 3); const qtdScrewsPack = Math.ceil((drywallArea * 35) / 100); const qtdTapeRolls = Math.ceil((drywallArea * 2) / 90); const qtdCompoundBags = Math.ceil((drywallArea * 0.7) / 20);
             costMaterialsDrywall = (qtdSheets * pricesDrywall.sheet) + (qtdProfiles * pricesDrywall.profile) + (qtdScrewsPack * pricesDrywall.screw) + (qtdTapeRolls * pricesDrywall.tape) + (qtdCompoundBags * pricesDrywall.compound);
@@ -851,29 +898,19 @@
         }
 
         totalMaterialCost = costMaterialsDrywall + costMaterialsPlaque;
-        const totalArea = drywallArea + plaquinhaArea;
-
-        // Cálculo do Preço de Venda
+        
         services.forEach(s => {
             let itemPrice = 0;
-            if (s.isCustom) { 
-                itemPrice = s.fixedPrice; 
-            } 
-            else if (s.customRate) { 
-                itemPrice = s.area * s.customRate; 
-            } 
-            else if (servicePrices[s.type] && parseFloat(servicePrices[s.type]) > 0) { 
-                itemPrice = s.area * parseFloat(servicePrices[s.type]); 
-            } 
+            if (s.isCustom) { itemPrice = s.fixedPrice; } 
+            else if (s.customRate) { itemPrice = s.area * s.customRate; } 
+            else if (servicePrices[s.type] && parseFloat(servicePrices[s.type]) > 0) { itemPrice = s.area * parseFloat(servicePrices[s.type]); } 
             else {
-                // Fallback (ex: 30 reais o metro de custo base simbólico)
                 const baseCost = s.area * 30; 
                 itemPrice = baseCost + (baseCost * (marginPercent / 100));
             }
             totalCalculatedPrice += itemPrice;
         });
 
-        // Lucro Líquido = Venda Total - (Materiais + Extras do usuário)
         const netProfit = totalCalculatedPrice - (totalExtraCost);
 
         calculationResult = {
@@ -895,7 +932,6 @@
         const elDetailCost = document.getElementById('detailCost'); if(elDetailCost) elDetailCost.innerText = formatMoney(totalExtraCost);
         const elProfitFinal = document.getElementById('detailProfitFinal'); if(elProfitFinal) elProfitFinal.innerText = formatMoney(netProfit);
         
-        // Auto Save e Navegação
         salvarOrcamentoAtual();
         mostrarResultados();
     }
@@ -906,7 +942,12 @@
         const name = calculationResult.clientName;
         const company = calculationResult.companyName; 
         const total = formatMoney(calculationResult.salePrice);
-        const servicesList = calculationResult.servicesDetail.map(s => { let details = s.isCustom ? '(Extra)' : `(${s.area}m²)`; return `• ${s.typeText} ${details}`; }).join('\n');
+        // Ajuste no WhatsApp para mostrar unidade
+        const servicesList = calculationResult.servicesDetail.map(s => { 
+            let details = s.isCustom ? '(Extra)' : `(${s.area} ${s.unit || 'm²'})`; 
+            return `• ${s.typeText} ${details}`; 
+        }).join('\n');
+        
         const message = `Olá, *${name}*! Tudo bem? 👋\n\nAqui é da *${company}*.\nConforme conversamos, segue o resumo do seu orçamento:\n\n${servicesList}\n\n💰 *Valor Total: ${total}*\n\nPodemos agendar o início da obra?\nFico à disposição para tirar qualquer dúvida!`;
         if (phone) { 
             if (phone.length >= 10 && phone.length <= 11 && !phone.startsWith('55')) phone = '55' + phone; 
@@ -927,10 +968,13 @@
         document.getElementById('pdfClientPhone').innerText = calculationResult.clientPhone || "Não informado";
         document.getElementById('pdfClientAddress').innerText = calculationResult.clientAddress || "Não informado";
         const tbody = document.getElementById('pdfServicesTableBody'); tbody.innerHTML = '';
+        
         calculationResult.servicesDetail.forEach((s) => {
-            const areaDisplay = s.isCustom ? '-' : `${s.area} m²`;
+            // Ajuste no PDF para mostrar unidade
+            const areaDisplay = s.isCustom ? '-' : `${s.area} ${s.unit || 'm²'}`;
             tbody.innerHTML += `<tr style="border-bottom: 1px solid #e5e7eb; page-break-inside: avoid;"><td style="padding: 12px 15px; color: #374151;">${s.typeText || s.type}</td><td style="padding: 12px 15px; text-align: center; color: #6b7280;">${areaDisplay}</td><td style="padding: 12px 15px; text-align: right; color: #111827; font-weight: 500;">${formatMoney(s.estimatedValue)}</td></tr>`;
         });
+        
         document.getElementById('pdfTotalPrice').innerText = formatMoney(calculationResult.salePrice);
         const element = document.getElementById('pdf-template'); const wrapper = document.getElementById('pdf-wrapper');
         wrapper.style.zIndex = "9999"; wrapper.style.height = "auto"; wrapper.style.overflow = "visible"; wrapper.style.backgroundColor = "white"; 
