@@ -15,7 +15,7 @@
         const manifest = {
             "name": "Calculadora do Gesseiro",
             "short_name": "GessoCalc",
-            "start_url": window.location.href.split('?')[0], // Garante URL limpa no início
+            "start_url": window.location.href,
             "display": "standalone",
             "background_color": "#F8FAFC",
             "theme_color": "#0F172A",
@@ -474,21 +474,6 @@
                     </p>
                     <div class="grid grid-cols-1 gap-2 max-h-[50vh] overflow-y-auto pr-2" id="servicePriceTable"></div>
                 </div>
-
-                <!-- ÁREA DE SISTEMA E ATUALIZAÇÃO -->
-                <div class="mt-8 border-t border-slate-100 pt-6">
-                    <div class="flex items-center gap-3 mb-4 pb-2 border-b border-slate-100">
-                        <div class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-600">
-                            <i class="fa-solid fa-mobile-screen text-sm"></i>
-                        </div>
-                        <h3 class="text-sm font-bold text-brand m-0">Sistema do App</h3>
-                    </div>
-                    
-                    <button type="button" onclick="verificarAtualizacao()" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 mb-2">
-                        <i class="fa-solid fa-rotate"></i> Buscar Atualização / Recarregar
-                    </button>
-                    <p class="text-[10px] text-center text-slate-400">Versão instalada: <span id="appVersionDisplay">Checking...</span></p>
-                </div>
             </div>
 
             <input type="hidden" id="priceSheet" value="38.00"><input type="hidden" id="priceProfile" value="18.00"><input type="hidden" id="priceScrew" value="15.00"><input type="hidden" id="priceCompound" value="45.00"><input type="hidden" id="priceTape" value="25.00"><input type="hidden" id="pricePlaque" value="3.50"><input type="hidden" id="pricePlasterBag" value="28.00"><input type="hidden" id="priceWire" value="18.00"><input type="hidden" id="priceSisal" value="12.00">
@@ -587,9 +572,6 @@
 
 <!-- SCRIPTS LÓGICOS -->
 <script>
-    // VERSÃO DO APP (Atualize este número sempre que subir código novo)
-    const APP_VERSION = '1.1';
-
     let services = [];
     let calculationResult = null;
     const formatMoney = (value) => {
@@ -599,18 +581,6 @@
 
     function safeLoadPreferences() {
         try { loadPreferences(); } catch (e) { console.error("Erro prefs", e); }
-        // Exibir versão
-        const vDisplay = document.getElementById('appVersionDisplay');
-        if(vDisplay) vDisplay.innerText = APP_VERSION;
-    }
-
-    // --- ATUALIZAÇÃO ---
-    function verificarAtualizacao() {
-        if(confirm('Isso irá recarregar o aplicativo para buscar a versão mais recente do site. Deseja continuar?')) {
-            // Truque de cache busting: adiciona timestamp na URL para forçar o navegador a ignorar o cache local
-            const novaUrl = window.location.pathname + '?update=' + new Date().getTime();
-            window.location.href = novaUrl;
-        }
     }
 
     // --- NAVEGAÇÃO ---
