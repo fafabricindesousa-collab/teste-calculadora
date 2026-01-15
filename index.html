@@ -15,7 +15,7 @@
         const manifest = {
             "name": "Calculadora do Gesseiro",
             "short_name": "GessoCalc",
-            "start_url": window.location.href.split('?')[0], // Garante URL limpa no início
+            "start_url": window.location.href.split('?')[0], 
             "display": "standalone",
             "background_color": "#F8FAFC",
             "theme_color": "#0F172A",
@@ -295,6 +295,8 @@
                                                 <option value="Sanca Fechada Gesso">Sanca Fechada (Gesso)</option>
                                                 <option value="Cortineiro Gesso">Cortineiro (Gesso)</option>
                                             </optgroup>
+                                            
+                                            <!-- DRYWALL SIMPLIFICADO -->
                                             <optgroup label="Sistemas Drywall">
                                                 <option value="Forro Drywall">Forro Drywall Liso (F530)</option>
                                                 <option value="Forro Drywall Tabicado">Forro Drywall Tabicado</option>
@@ -308,7 +310,8 @@
                                                 <option value="Shaft Drywall">Shaft</option>
                                                 <option value="Closet Drywall">Closet / Prateleiras</option>
                                             </optgroup>
-                                            <!-- NOVO GRUPO PVC -->
+
+                                            <!-- GRUPO PVC -->
                                             <optgroup label="Sistemas Forro PVC">
                                                 <option value="Forro PVC Branco Liso 8mm">Forro PVC Branco Liso 8mm</option>
                                                 <option value="Forro PVC Branco Frisado 8mm">Forro PVC Branco Frisado 8mm</option>
@@ -823,6 +826,13 @@
 
     function handleLogoUpload(input) {
         if (input.files && input.files[0]) {
+            const file = input.files[0];
+            // Check file size limit (approx 500KB to be safe with localStorage)
+            if(file.size > 500000) {
+                showToast("A imagem é muito grande. Use uma menor que 500KB.", true);
+                return;
+            }
+            
             const reader = new FileReader();
             reader.onload = function(e) {
                 tempLogoBase64 = e.target.result;
@@ -831,7 +841,7 @@
                 preview.innerHTML = `<img src="${tempLogoBase64}" class="w-full h-full object-contain">`;
                 document.getElementById('btnRemoveLogo').classList.remove('hidden');
             };
-            reader.readAsDataURL(input.files[0]);
+            reader.readAsDataURL(file);
         }
     }
 
@@ -944,7 +954,7 @@
     };
 
     // VERSÃO DO APP
-    const APP_VERSION = '2.0';
+    const APP_VERSION = '2.2';
 
     let services = [];
     let calculationResult = null;
@@ -1049,8 +1059,10 @@
 
         localStorage.setItem('gessoMasterPrefs', JSON.stringify(prefs));
         
+        // RECARREGA TUDO PARA EVITAR BUG DE CAMPOS VAZIOS
         renderCustomServices();
         initPriceTable();
+        loadPreferences(); // Garante que os valores voltam para os inputs
         
         document.getElementById('newServiceName').value = '';
         document.getElementById('newServicePrice').value = '';
@@ -1062,9 +1074,15 @@
             const prefs = JSON.parse(localStorage.getItem('gessoMasterPrefs') || '{}');
             if(prefs.customServices) {
                 prefs.customServices = prefs.customServices.filter(s => s.name !== name);
+                // Opcional: remover também o preço salvo para limpar o JSON
+                if(prefs.servicePrices && prefs.servicePrices[name]) delete prefs.servicePrices[name];
+                
                 localStorage.setItem('gessoMasterPrefs', JSON.stringify(prefs));
+                
                 renderCustomServices();
                 initPriceTable();
+                loadPreferences(); // Recarrega valores
+                
                 showToast("Serviço excluído.");
             }
         });
@@ -1135,6 +1153,7 @@
     }
 
     function loadPreferences() {
+        // Assegura que a ordem de renderização está correta
         renderCustomServices();
         initPriceTable();
         const prefs = JSON.parse(localStorage.getItem('gessoMasterPrefs'));
@@ -1528,7 +1547,7 @@
             // Display Logo AND Name side by side
             headerEl.innerHTML = `
                 <div style="display: flex; align-items: center; gap: 15px;">
-                    <img src="${logoBase64}" style="height: 50px; width: auto; object-fit: contain;">
+                    <img src="${logoBase64}" style="max-height: 70px; max-width: 250px; object-fit: contain;">
                     <span>${companyNameHtml}</span>
                 </div>`;
         } else {
