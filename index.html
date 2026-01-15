@@ -256,6 +256,7 @@
 
                 <!-- 2. Serviços -->
                 <div class="clean-card p-6 animate-slide-up" style="animation-delay: 0.1s;">
+                    <!-- ... existing service card content ... -->
                     <div class="flex items-center gap-3 mb-6 pb-3 border-b border-slate-50">
                         <div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600">
                             <i class="fa-solid fa-screwdriver-wrench text-xl"></i>
@@ -306,6 +307,26 @@
                                                 <option value="Revestimento Drywall">Revestimento Drywall</option>
                                                 <option value="Shaft Drywall">Shaft</option>
                                                 <option value="Closet Drywall">Closet / Prateleiras</option>
+                                            </optgroup>
+                                            <!-- NOVO GRUPO PVC -->
+                                            <optgroup label="Sistemas Forro PVC">
+                                                <option value="Forro PVC Branco Liso 8mm">Forro PVC Branco Liso 8mm</option>
+                                                <option value="Forro PVC Branco Frisado 8mm">Forro PVC Branco Frisado 8mm</option>
+                                                <option value="Forro PVC Branco Liso 10mm">Forro PVC Branco Liso 10mm</option>
+                                                <option value="Forro PVC Branco Frisado 10mm">Forro PVC Branco Frisado 10mm</option>
+                                                <option value="Forro PVC Madeirado Carvalho">Forro PVC Madeirado Carvalho</option>
+                                                <option value="Forro PVC Madeirado Cerejeira">Forro PVC Madeirado Cerejeira</option>
+                                                <option value="Forro PVC Madeirado Mogno">Forro PVC Madeirado Mogno</option>
+                                                <option value="Forro PVC Madeirado Nogueira">Forro PVC Madeirado Nogueira</option>
+                                                <option value="Forro PVC Decorado 3D">Forro PVC Decorado 3D</option>
+                                                <option value="Forro PVC Preto Liso">Forro PVC Preto Liso</option>
+                                                <option value="Forro PVC Preto Frisado">Forro PVC Preto Frisado</option>
+                                                <option value="Forro PVC Cinza/Prata">Forro PVC Cinza/Prata</option>
+                                                <option value="Forro PVC Texturizado">Forro PVC Texturizado</option>
+                                                <option value="Forro PVC Térmico (c/ Isopor)">Forro PVC Térmico (c/ Isopor)</option>
+                                                <option value="Forro PVC Térmico (c/ Manta)">Forro PVC Térmico (c/ Manta)</option>
+                                                <option value="Revestimento Parede PVC">Revestimento Parede PVC</option>
+                                                <option value="Sanca de PVC">Sanca de PVC (Metro)</option>
                                             </optgroup>
                                             <optgroup label="Decorações">
                                                 <option value="Sanca Ilha">Sanca Ilha</option>
@@ -503,6 +524,17 @@
                         <input type="number" id="discountInput" placeholder="0.00" class="bg-slate-50 border border-slate-200 rounded-lg p-2.5 w-28 text-right font-bold text-orange-600 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-100 transition-all" oninput="aplicarDesconto()">
                     </div>
                 </div>
+
+                <!-- CARD INPUT OBSERVAÇÕES (NOVO) -->
+                <div class="clean-card p-4 mt-2 border-l-4 border-slate-400 animate-slide-up" style="animation-delay: 0.15s;">
+                    <label class="font-bold text-slate-600 text-sm flex items-center gap-2 mb-2">
+                        <div class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-pen-clip"></i>
+                        </div>
+                        Observações / Resumo
+                    </label>
+                    <textarea id="projectSummaryInput" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-sm text-slate-600 focus:outline-none focus:border-slate-400 transition-all resize-none" rows="2" placeholder="Este orçamento inclui fornecimento de material e mão de obra especializada."></textarea>
+                </div>
             </div>
 
             <!-- Botões de Ação -->
@@ -556,6 +588,24 @@
                     <h3 class="text-sm font-bold text-brand m-0">Sua Empresa</h3>
                 </div>
                 
+                <div class="mb-6">
+                    <label class="field-label">Logo da Empresa (Opcional)</label>
+                    <div class="flex items-center gap-4">
+                        <div id="logoPreview" class="w-16 h-16 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center overflow-hidden">
+                            <i class="fa-regular fa-image text-slate-300 text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <input type="file" id="companyLogoInput" accept="image/*" class="hidden" onchange="handleLogoUpload(this)">
+                            <button type="button" onclick="document.getElementById('companyLogoInput').click()" class="bg-white border border-slate-200 text-slate-600 font-bold py-2 px-4 rounded-lg text-xs hover:bg-slate-50 transition-all shadow-sm">
+                                <i class="fa-solid fa-upload mr-1"></i> Escolher Imagem
+                            </button>
+                            <button type="button" onclick="removerLogo()" id="btnRemoveLogo" class="hidden text-red-400 text-[10px] font-bold mt-2 hover:text-red-500">
+                                Remover Logo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="mb-6">
                     <label class="field-label">Nome Fantasia</label>
                     <div class="input-group">
@@ -688,7 +738,7 @@
                     <div style="flex: 1;">
                         <h3 style="font-size: 12px; text-transform: uppercase; color: #94A3B8; font-weight: 700; margin-bottom: 10px;">Resumo do Projeto</h3>
                         <div style="background: #F1F5F9; padding: 15px; border-radius: 8px; border: 1px solid #E2E8F0;">
-                            <div style="color: #334155; font-size: 14px;">Este orçamento inclui fornecimento de material e mão de obra especializada.</div>
+                            <div id="pdfProjectSummary" style="color: #334155; font-size: 14px;">Este orçamento inclui fornecimento de material e mão de obra especializada.</div>
                         </div>
                     </div>
                 </div>
@@ -768,6 +818,31 @@
         });
     }
 
+    // LOGO UPLOAD SYSTEM
+    let tempLogoBase64 = null;
+
+    function handleLogoUpload(input) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                tempLogoBase64 = e.target.result;
+                // Update preview
+                const preview = document.getElementById('logoPreview');
+                preview.innerHTML = `<img src="${tempLogoBase64}" class="w-full h-full object-contain">`;
+                document.getElementById('btnRemoveLogo').classList.remove('hidden');
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function removerLogo() {
+        tempLogoBase64 = null;
+        const preview = document.getElementById('logoPreview');
+        preview.innerHTML = `<i class="fa-regular fa-image text-slate-300 text-xl"></i>`;
+        document.getElementById('btnRemoveLogo').classList.add('hidden');
+        document.getElementById('companyLogoInput').value = ''; // Reset input
+    }
+
     // MATERIAIS MODAL
     function abrirMateriais() {
         if(!calculationResult || !calculationResult.materialList) {
@@ -815,10 +890,16 @@
     }
 
     // LÓGICA DE ESTIMATIVA DE MATERIAIS
-    // Fórmulas baseadas em consumo médio por m²
     const MATERIAL_RECIPES = {
+        'Forro Plaquinha Dilatado': (area) => [
+            { name: 'Placa 60x60', qtd: (area / 0.36) * 1.05, unit: 'un' },
+            { name: 'Gesso em Pó (Saco 40kg)', qtd: area / 15, unit: 'sc' },
+            { name: 'Sisal', qtd: area * 0.05, unit: 'kg' },
+            { name: 'Arame Galvanizado', qtd: area * 0.12, unit: 'kg' },
+            { name: 'Junta de Dilatação (Tabica)', qtd: Math.sqrt(area) * 4, unit: 'm' }
+        ],
         'Forro Drywall': (area) => [
-            { name: 'Chapa Drywall ST (1.20x2.40)', qtd: (area / 2.88) * 1.05, unit: 'un' }, // 5% perda
+            { name: 'Chapa Drywall ST (1.20x2.40)', qtd: (area / 2.88) * 1.05, unit: 'un' },
             { name: 'Perfil F530', qtd: area * 2.5, unit: 'm' }, 
             { name: 'Canaleta/Tabica (Perímetro Est.)', qtd: Math.sqrt(area) * 4, unit: 'm' }, 
             { name: 'Parafuso GN25', qtd: area * 30, unit: 'un' },
@@ -829,14 +910,15 @@
         ],
         'Forro Plaquinha': (area) => [
             { name: 'Placa 60x60', qtd: (area / 0.36) * 1.05, unit: 'un' },
-            { name: 'Gesso em Pó (Saco 40kg)', qtd: area / 15, unit: 'sc' }, // ~2.5kg/m²
+            { name: 'Gesso em Pó (Saco 40kg)', qtd: area / 15, unit: 'sc' },
             { name: 'Sisal', qtd: area * 0.05, unit: 'kg' },
-            { name: 'Arame Galvanizado', qtd: area * 0.12, unit: 'kg' }
+            { name: 'Arame Galvanizado', qtd: area * 0.12, unit: 'kg' },
+            { name: 'Junta de Dilatação (Estimativa)', qtd: Math.sqrt(area) * 4, unit: 'm' }
         ],
         'Parede Drywall': (area) => [
-             { name: 'Chapa Drywall ST (1.20x2.40)', qtd: ((area * 2) / 2.88) * 1.05, unit: 'un' }, // 2 lados
+             { name: 'Chapa Drywall ST (1.20x2.40)', qtd: ((area * 2) / 2.88) * 1.05, unit: 'un' },
              { name: 'Montante 48/70/90', qtd: area * 2.2, unit: 'm' },
-             { name: 'Guia 48/70/90', qtd: Math.sqrt(area) * 2, unit: 'm' }, // Estimativa grosseira de perímetro linear
+             { name: 'Guia 48/70/90', qtd: Math.sqrt(area) * 2, unit: 'm' },
              { name: 'Parafuso GN25', qtd: area * 30, unit: 'un' },
              { name: 'Fita de Papel', qtd: area * 3, unit: 'm' }, 
              { name: 'Massa de Junta', qtd: area * 0.9, unit: 'kg' },
@@ -851,11 +933,18 @@
              { name: 'Gesso Cola', qtd: area * 2.5, unit: 'kg' }, 
              { name: 'Massa de Junta', qtd: area * 0.4, unit: 'kg' },
              { name: 'Fita de Papel', qtd: area * 1.5, unit: 'm' }
+        ],
+        'Forro PVC': (area) => [
+            { name: 'Lâminas de PVC', qtd: area * 1.05, unit: 'm²' },
+            { name: 'Perfil Metalom 15x15 (Estrutura)', qtd: area * 3, unit: 'm' }, 
+            { name: 'Acabamento (Meia Cana/Moldura)', qtd: Math.sqrt(area) * 4, unit: 'm' },
+            { name: 'Parafusos/Fixadores', qtd: area * 10, unit: 'un' },
+            { name: 'Arame/Suspensão', qtd: area * 1.5, unit: 'un' }
         ]
     };
 
-    // VERSÃO DO APP (Atualize este número sempre que subir código novo)
-    const APP_VERSION = '1.4';
+    // VERSÃO DO APP
+    const APP_VERSION = '2.0';
 
     let services = [];
     let calculationResult = null;
@@ -949,25 +1038,20 @@
         const prefs = JSON.parse(localStorage.getItem('gessoMasterPrefs') || '{}');
         if(!prefs.customServices) prefs.customServices = [];
         
-        // Verifica duplicidade
         if(prefs.customServices.some(s => s.name === name)) {
             showToast("Este serviço já existe", true); return;
         }
 
-        // Adiciona à lista
         prefs.customServices.push({ name, unit });
         
-        // Salva preço padrão
         if(!prefs.servicePrices) prefs.servicePrices = {};
         if(!isNaN(price) && price > 0) prefs.servicePrices[name] = price;
 
         localStorage.setItem('gessoMasterPrefs', JSON.stringify(prefs));
         
-        // Atualiza UI
         renderCustomServices();
         initPriceTable();
         
-        // Limpa campos
         document.getElementById('newServiceName').value = '';
         document.getElementById('newServicePrice').value = '';
         showToast("Serviço salvo com sucesso!");
@@ -1000,10 +1084,10 @@
         'Boiserie': 'm',
         'Rodateto Decorado': 'm',
         'Nicho Embutido': 'un',
+        'Sanca de PVC': 'm',
         // O restante assume m²
     };
 
-    // Evento para mudar unidade automaticamente
     const serviceSelect = document.getElementById('serviceTypeInput');
     const unitSelect = document.getElementById('unitInput');
     
@@ -1011,7 +1095,6 @@
         serviceSelect.addEventListener('change', function() {
             const val = this.value;
             const selectedOption = this.options[this.selectedIndex];
-            // Verifica se tem unidade customizada no dataset ou usa o padrão
             const unit = selectedOption.dataset.unit || defaultUnits[val] || 'm²';
             unitSelect.value = unit;
         });
@@ -1031,18 +1114,18 @@
             });
         }
         
-        // Recarrega prefs existentes para não perder customServices
         const currentPrefs = JSON.parse(localStorage.getItem('gessoMasterPrefs') || '{}');
         
         const preferences = {
-            ...currentPrefs, // Mantém dados anteriores
+            ...currentPrefs, 
             companyName: document.getElementById('companyName').value,
             profitMargin: document.getElementById('profitMargin').value,
             servicePrices: servicePrices,
             sheet: document.getElementById('priceSheet').value,
             profile: document.getElementById('priceProfile').value,
             screw: document.getElementById('priceScrew').value,
-            compound: document.getElementById('priceCompound').value
+            compound: document.getElementById('priceCompound').value,
+            companyLogo: tempLogoBase64 // Save the base64 string for logo
         };
         const mainTotalExtra = document.getElementById('totalExtraCost');
         if(mainTotalExtra) preferences.totalExtraCost = mainTotalExtra.value;
@@ -1052,12 +1135,9 @@
     }
 
     function loadPreferences() {
-        // Carrega customizados ANTES de iniciar a tabela
         renderCustomServices();
-        
-        const prefs = JSON.parse(localStorage.getItem('gessoMasterPrefs'));
-        // Inicia tabela DEPOIS de renderizar custom services para incluí-los
         initPriceTable();
+        const prefs = JSON.parse(localStorage.getItem('gessoMasterPrefs'));
 
         if(prefs) {
             if(prefs.companyName) document.getElementById('companyName').value = prefs.companyName;
@@ -1072,6 +1152,13 @@
                     const el = document.getElementById(inputId);
                     if(el) el.value = value;
                 }
+            }
+            // Load Logo
+            if (prefs.companyLogo) {
+                tempLogoBase64 = prefs.companyLogo;
+                const preview = document.getElementById('logoPreview');
+                preview.innerHTML = `<img src="${prefs.companyLogo}" class="w-full h-full object-contain">`;
+                document.getElementById('btnRemoveLogo').classList.remove('hidden');
             }
         }
     }
@@ -1270,6 +1357,9 @@
         // --- MATERIAL ESTIMATION LOGIC ---
         const materialAggregator = {}; // { 'Chapa': { qtd: 10, unit: 'un' } }
 
+        // Sort keys by length descending to ensure specific keys (like "Forro Plaquinha Dilatado") are found before generic ones ("Forro Plaquinha")
+        const sortedRecipeKeys = Object.keys(MATERIAL_RECIPES).sort((a, b) => b.length - a.length);
+
         services.forEach(s => {
             // Price Calculation
             if(!s.isCustom) {
@@ -1280,8 +1370,7 @@
 
             // Material Estimation per service
             if (!s.isCustom) {
-                // Find matching recipe using includes for partial matches (e.g., 'Forro Drywall Tabicado' matches 'Forro Drywall')
-                let recipeKey = Object.keys(MATERIAL_RECIPES).find(key => s.type.includes(key));
+                let recipeKey = sortedRecipeKeys.find(key => s.type.includes(key));
                 if (recipeKey) {
                     const materials = MATERIAL_RECIPES[recipeKey](s.area);
                     materials.forEach(mat => {
@@ -1340,7 +1429,10 @@
                 else if(s.customRate) val = s.area * s.customRate;
                 else if(servicePrices[s.type] && parseFloat(servicePrices[s.type]) > 0) val = s.area * parseFloat(servicePrices[s.type]);
                 else { const baseCost = s.area * 30; val = baseCost + (baseCost * (marginPercent / 100)); }
-                return { ...s, estimatedValue: val };
+                
+                // Lógica de exibição da junta no orçamento removida a pedido
+                
+                return { ...s, typeText: s.typeText, estimatedValue: val };
             })
         };
 
@@ -1388,6 +1480,7 @@
     }
 
     function enviarWhatsApp() {
+        // ... existing whatsapp function ...
         if (!calculationResult) return;
         let phone = calculationResult.clientPhone.replace(/\D/g, ''); 
         const name = calculationResult.clientName;
@@ -1418,13 +1511,44 @@
         document.getElementById('pdfDate').innerText = d.toLocaleDateString('pt-BR');
         document.getElementById('pdfId').innerText = Math.floor(Math.random() * 9000) + 1000;
         const companyName = calculationResult.companyName;
-        if(companyName && companyName !== "GessoMaster") { document.getElementById('pdfHeaderCompany').innerHTML = `<span style="text-transform: uppercase;">${companyName}</span>`; document.getElementById('pdfFooterCompany').innerText = companyName; }
-        else { document.getElementById('pdfHeaderCompany').innerHTML = 'GESSO<span style="color: #2563EB;">MASTER</span>'; document.getElementById('pdfFooterCompany').innerText = 'GessoMaster'; }
+        
+        // READ CURRENT PREFS FOR LOGO (to ensure latest logo is used)
+        const prefs = JSON.parse(localStorage.getItem('gessoMasterPrefs') || '{}');
+        const logoBase64 = prefs.companyLogo;
+
+        // Header Logic with Logo Support
+        const headerEl = document.getElementById('pdfHeaderCompany');
+        
+        let companyNameHtml = 'GESSO<span style="color: #2563EB;">MASTER</span>';
+        if(companyName && companyName !== "GessoMaster") { 
+            companyNameHtml = `<span style="text-transform: uppercase;">${companyName}</span>`; 
+        }
+
+        if (logoBase64) {
+            // Display Logo AND Name side by side
+            headerEl.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <img src="${logoBase64}" style="height: 50px; width: auto; object-fit: contain;">
+                    <span>${companyNameHtml}</span>
+                </div>`;
+        } else {
+            // Display only Name
+            headerEl.innerHTML = companyNameHtml;
+        }
+        
+        // Footer name always text
+        document.getElementById('pdfFooterCompany').innerText = companyName && companyName !== "GessoMaster" ? companyName : 'GessoMaster';
+
         document.getElementById('pdfClientName').innerText = calculationResult.clientName;
         document.getElementById('pdfClientPhone').innerText = calculationResult.clientPhone || "Não informado";
         document.getElementById('pdfClientAddress').innerText = calculationResult.clientAddress || "Não informado";
         const tbody = document.getElementById('pdfServicesTableBody'); tbody.innerHTML = '';
         
+        // Get custom summary or default
+        const customSummary = document.getElementById('projectSummaryInput').value.trim();
+        const defaultSummary = "Este orçamento inclui fornecimento de material e mão de obra especializada.";
+        document.getElementById('pdfProjectSummary').innerText = customSummary || defaultSummary;
+
         calculationResult.servicesDetail.forEach((s) => {
             // Ajuste no PDF para mostrar unidade
             const areaDisplay = s.isCustom ? '-' : `${s.area} ${s.unit || 'm²'}`;
