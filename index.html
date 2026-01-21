@@ -285,7 +285,8 @@
                                             <optgroup label="Sistemas Plaquinha 60x60">
                                                 <option value="Forro Plaquinha">Forro Plaquinha 60x60 Liso</option>
                                                 <option value="Forro Plaquinha Decorado">Forro Plaquinha Decorado</option>
-                                                <option value="Forro Plaquinha Dilatado">Forro Plaquinha c/ Dilatação</option>
+                                                <option value="Forro Aramado Dilatado">Forro Aramado Tabicado</option>
+                                                <option value="Forro Plaquinha Colado">Forro Colado (Placa 60x60)</option>
                                                 <option value="Forro Aramado">Forro Aramado (Gesso Liso)</option>
                                                 <option value="Fechamento de Beiral">Fechamento de Beiral</option>
                                                 <option value="Revestimento de Parede">Revestimento de Parede</option>
@@ -300,8 +301,8 @@
                                             <optgroup label="Sistemas Drywall">
                                                 <option value="Forro Drywall">Forro Drywall Liso (F530)</option>
                                                 <option value="Forro Drywall Tabicado">Forro Drywall Tabicado</option>
+                                                <option value="Forro Drywall Estruturado Montante">Forro Estruturado (Montante)</option>
                                                 <option value="Forro Drywall Acústico">Forro Drywall Acústico</option>
-                                                <option value="Forro Drywall Aramado">Forro Drywall Estruturado</option>
                                                 <option value="Parede Drywall">Parede Drywall Simples</option>
                                                 <option value="Parede Drywall Acústica">Parede Drywall Acústica</option>
                                                 <option value="Parede Drywall RU">Parede Drywall RU (Umidade)</option>
@@ -311,26 +312,18 @@
                                                 <option value="Closet Drywall">Closet / Prateleiras</option>
                                             </optgroup>
 
-                                            <!-- GRUPO PVC -->
+                                            <!-- GRUPO PVC OTIMIZADO -->
                                             <optgroup label="Sistemas Forro PVC">
-                                                <option value="Forro PVC Branco Liso 8mm">Forro PVC Branco Liso 8mm</option>
-                                                <option value="Forro PVC Branco Frisado 8mm">Forro PVC Branco Frisado 8mm</option>
-                                                <option value="Forro PVC Branco Liso 10mm">Forro PVC Branco Liso 10mm</option>
-                                                <option value="Forro PVC Branco Frisado 10mm">Forro PVC Branco Frisado 10mm</option>
-                                                <option value="Forro PVC Madeirado Carvalho">Forro PVC Madeirado Carvalho</option>
-                                                <option value="Forro PVC Madeirado Cerejeira">Forro PVC Madeirado Cerejeira</option>
-                                                <option value="Forro PVC Madeirado Mogno">Forro PVC Madeirado Mogno</option>
-                                                <option value="Forro PVC Madeirado Nogueira">Forro PVC Madeirado Nogueira</option>
-                                                <option value="Forro PVC Decorado 3D">Forro PVC Decorado 3D</option>
-                                                <option value="Forro PVC Preto Liso">Forro PVC Preto Liso</option>
-                                                <option value="Forro PVC Preto Frisado">Forro PVC Preto Frisado</option>
-                                                <option value="Forro PVC Cinza/Prata">Forro PVC Cinza/Prata</option>
-                                                <option value="Forro PVC Texturizado">Forro PVC Texturizado</option>
-                                                <option value="Forro PVC Térmico (c/ Isopor)">Forro PVC Térmico (c/ Isopor)</option>
-                                                <option value="Forro PVC Térmico (c/ Manta)">Forro PVC Térmico (c/ Manta)</option>
+                                                <option value="Forro PVC Branco Liso">Forro PVC Branco Liso</option>
+                                                <option value="Forro PVC Branco Frisado">Forro PVC Branco Frisado</option>
+                                                <option value="Forro PVC Madeirado">Forro PVC Madeirado</option>
+                                                <option value="Forro PVC Decorado Especial">Forro PVC Decorado/3D</option>
+                                                <option value="Forro PVC Preto">Forro PVC Preto</option>
+                                                <option value="Forro PVC Térmico">Forro PVC Térmico (Isopor/Manta)</option>
                                                 <option value="Revestimento Parede PVC">Revestimento Parede PVC</option>
                                                 <option value="Sanca de PVC">Sanca de PVC (Metro)</option>
                                             </optgroup>
+                                            
                                             <optgroup label="Decorações">
                                                 <option value="Sanca Ilha">Sanca Ilha</option>
                                                 <option value="Sanca Invertida">Sanca Invertida</option>
@@ -348,6 +341,27 @@
                                         </select>
                                         <i class="fa-solid fa-chevron-down input-icon !text-xs !left-auto !right-4 !text-slate-400"></i>
                                         <i class="fa-solid fa-list-check input-icon"></i>
+                                    </div>
+                                </div>
+                                
+                                <!-- SELETOR DE TAMANHO DA CHAPA (NOVO) -->
+                                <div id="sheetSizeSelector" class="hidden animate-slide-up bg-blue-50 border border-blue-200 rounded-xl p-3 mb-4">
+                                    <label class="text-[11px] font-bold text-blue-700 uppercase mb-2 block">Tamanho da Chapa Drywall</label>
+                                    <div class="flex gap-2">
+                                        <label class="flex items-center gap-2 bg-white border border-blue-100 rounded-lg p-2.5 flex-1 cursor-pointer hover:bg-blue-50 transition-colors">
+                                            <input type="radio" name="sheetSize" value="240" checked class="accent-blue-600 w-4 h-4">
+                                            <div class="leading-none">
+                                                <span class="block text-xs font-bold text-slate-700">1.20 x 2.40</span>
+                                                <span class="block text-[9px] text-slate-400 mt-0.5">Padrão (2.88m²)</span>
+                                            </div>
+                                        </label>
+                                        <label class="flex items-center gap-2 bg-white border border-blue-100 rounded-lg p-2.5 flex-1 cursor-pointer hover:bg-blue-50 transition-colors">
+                                            <input type="radio" name="sheetSize" value="180" class="accent-blue-600 w-4 h-4">
+                                            <div class="leading-none">
+                                                <span class="block text-xs font-bold text-slate-700">1.20 x 1.80</span>
+                                                <span class="block text-[9px] text-slate-400 mt-0.5">Menor (2.16m²)</span>
+                                            </div>
+                                        </label>
                                     </div>
                                 </div>
                                 
@@ -547,6 +561,15 @@
                 </div>
 
                 <div class="space-y-3 relative z-10">
+                    <!-- TOGGLE METRAGEM NO ZAP (RESTAURADO) -->
+                    <div class="flex items-center justify-between bg-white/10 p-3 rounded-xl mb-3">
+                        <span class="text-xs font-bold text-slate-300">Incluir metragens (PDF/Zap)?</span>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="toggleMeasurements" class="sr-only peer" checked>
+                            <div class="w-9 h-5 bg-white/20 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-green-500"></div>
+                        </label>
+                    </div>
+
                     <button onclick="enviarWhatsApp()" class="w-full bg-[#25D366] hover:bg-[#1ebc57] text-white font-bold py-4 rounded-2xl shadow-lg transition-all active:scale-95 flex items-center justify-center gap-3 text-lg border border-green-500">
                         <i class="fa-brands fa-whatsapp text-2xl"></i> 
                         Enviar no WhatsApp
@@ -617,6 +640,31 @@
                     </div>
                 </div>
 
+                <!-- DADOS DE PAGAMENTO E CONTATO - NOVO -->
+                <div class="mb-6 space-y-4">
+                    <div>
+                        <label class="field-label">Seu Telefone/WhatsApp</label>
+                        <div class="input-group">
+                            <input type="tel" id="companyPhone" placeholder="(99) 99999-9999" class="custom-input">
+                            <i class="fa-brands fa-whatsapp input-icon"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="field-label">Chave Pix</label>
+                        <div class="input-group">
+                            <input type="text" id="companyPix" placeholder="CPF, Email ou Telefone" class="custom-input">
+                            <i class="fa-brands fa-pix input-icon"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="field-label">CPF ou CNPJ</label>
+                        <div class="input-group">
+                            <input type="text" id="companyDoc" placeholder="000.000.000-00" class="custom-input">
+                            <i class="fa-solid fa-id-card input-icon"></i>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="mb-6">
                     <label class="field-label">Margem de Lucro (Backup)</label>
                     <div class="flex items-center gap-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
@@ -626,6 +674,26 @@
                         <span class="text-brand font-bold" id="profitDisplayConfig">40%</span>
                     </div>
                     <p class="text-[10px] text-slate-400 mt-2">Usada apenas para serviços onde você não definiu um preço fixo na tabela abaixo.</p>
+                </div>
+
+                <!-- PREÇOS DE MATERIAIS - NOVA SEÇÃO -->
+                <div class="mt-8 mb-6">
+                    <div class="flex items-center gap-3 mb-4 pb-2 border-b border-slate-100">
+                        <div class="w-8 h-8 rounded-full bg-yellow-50 flex items-center justify-center text-yellow-600">
+                            <i class="fa-solid fa-dollar-sign text-sm"></i>
+                        </div>
+                        <h3 class="text-sm font-bold text-brand m-0">Custo dos Materiais</h3>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                           <label class="text-[10px] font-bold text-slate-500 uppercase">Chapa 1.20x2.40</label>
+                           <input type="number" id="configPriceSheet" class="custom-input !py-2 !text-sm !h-10 text-right" onchange="document.getElementById('priceSheet').value = this.value; savePreferences();">
+                        </div>
+                        <div>
+                           <label class="text-[10px] font-bold text-slate-500 uppercase">Chapa 1.20x1.80</label>
+                           <input type="number" id="configPriceSheet180" class="custom-input !py-2 !text-sm !h-10 text-right" onchange="document.getElementById('priceSheet180').value = this.value; savePreferences();">
+                        </div>
+                    </div>
                 </div>
 
                 <div class="mt-8">
@@ -688,7 +756,9 @@
                 </div>
             </div>
 
-            <input type="hidden" id="priceSheet" value="38.00"><input type="hidden" id="priceProfile" value="18.00"><input type="hidden" id="priceScrew" value="15.00"><input type="hidden" id="priceCompound" value="45.00"><input type="hidden" id="priceTape" value="25.00"><input type="hidden" id="pricePlaque" value="3.50"><input type="hidden" id="pricePlasterBag" value="28.00"><input type="hidden" id="priceWire" value="18.00"><input type="hidden" id="priceSisal" value="12.00">
+            <input type="hidden" id="priceSheet" value="38.00">
+            <input type="hidden" id="priceSheet180" value="28.00">
+            <input type="hidden" id="priceProfile" value="18.00"><input type="hidden" id="priceScrew" value="15.00"><input type="hidden" id="priceCompound" value="45.00"><input type="hidden" id="priceTape" value="25.00"><input type="hidden" id="pricePlaque" value="3.50"><input type="hidden" id="pricePlasterBag" value="28.00"><input type="hidden" id="priceWire" value="18.00"><input type="hidden" id="priceSisal" value="12.00">
 
             <button type="button" onclick="savePreferences(); fecharConfig();" class="w-full bg-brand hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl shadow-lg transition-all mb-10">
                 Salvar Configurações
@@ -721,6 +791,7 @@
                         <div style="font-size: 28px; font-weight: 800; color: #0F172A; letter-spacing: -0.5px;" id="pdfHeaderCompany">
                             GESSO<span style="color: #2563EB;">MASTER</span>
                         </div>
+                        <div id="pdfHeaderPhone" style="font-size: 14px; color: #334155; margin-top: 2px; font-weight: 600;"></div>
                         <div style="font-size: 14px; color: #64748B; margin-top: 5px;">Soluções Especializadas em Drywall e Gesso</div>
                     </div>
                     <div style="text-align: right;">
@@ -748,12 +819,8 @@
                 <div style="margin-bottom: 40px;">
                     <h3 style="font-size: 16px; font-weight: 700; color: #0F172A; margin-bottom: 15px; border-left: 4px solid #0F172A; padding-left: 10px;">Detalhamento dos Serviços</h3>
                     <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-                        <thead>
-                            <tr style="background: #F1F5F9; color: #334155;">
-                                <th style="padding: 12px 15px; text-align: left; border-radius: 6px 0 0 6px;">Descrição do Serviço</th>
-                                <th style="padding: 12px 15px; text-align: center;">Qtd/Medida</th>
-                                <th style="padding: 12px 15px; text-align: right; border-radius: 0 6px 6px 0;">Valor Estimado</th>
-                            </tr>
+                        <thead id="pdfServicesTableHeader">
+                            <!-- Injected by JS -->
                         </thead>
                         <tbody id="pdfServicesTableBody"></tbody>
                         <tfoot id="pdfServicesTableFoot">
@@ -761,6 +828,22 @@
                         </tfoot>
                     </table>
                 </div>
+                
+                <!-- DADOS DE PAGAMENTO NO PDF -->
+                <div id="pdfPaymentSection" style="margin-bottom: 40px; display: none;">
+                    <h3 style="font-size: 12px; text-transform: uppercase; color: #94A3B8; font-weight: 700; margin-bottom: 10px;">Dados para Pagamento</h3>
+                    <div style="background: #F0FDF4; padding: 15px; border-radius: 8px; border: 1px solid #DCFCE7; display: flex; gap: 20px;">
+                         <div style="flex: 1;" id="pdfPixContainer">
+                            <div style="font-size: 11px; color: #166534; font-weight: bold; text-transform: uppercase;">Chave Pix</div>
+                            <div id="pdfPixKey" style="font-size: 14px; color: #15803d; font-family: monospace;"></div>
+                         </div>
+                         <div style="flex: 1;" id="pdfDocContainer">
+                            <div style="font-size: 11px; color: #166534; font-weight: bold; text-transform: uppercase;">CPF / CNPJ</div>
+                            <div id="pdfDocKey" style="font-size: 14px; color: #15803d; font-family: monospace;"></div>
+                         </div>
+                    </div>
+                </div>
+
                 <div style="margin-top: 60px; display: flex; gap: 40px; align-items: flex-end; page-break-inside: avoid;">
                     <div style="flex: 1; text-align: center;">
                         <div style="border-bottom: 1px solid #000; margin-bottom: 10px;"></div>
@@ -908,16 +991,22 @@
             { name: 'Arame Galvanizado', qtd: area * 0.12, unit: 'kg' },
             { name: 'Junta de Dilatação (Tabica)', qtd: Math.sqrt(area) * 4, unit: 'm' }
         ],
-        'Forro Drywall': (area) => [
-            { name: 'Chapa Drywall ST (1.20x2.40)', qtd: (area / 2.88) * 1.05, unit: 'un' },
-            { name: 'Perfil F530', qtd: area * 2.5, unit: 'm' }, 
-            { name: 'Canaleta/Tabica (Perímetro Est.)', qtd: Math.sqrt(area) * 4, unit: 'm' }, 
-            { name: 'Parafuso GN25', qtd: area * 30, unit: 'un' },
-            { name: 'Parafuso Metal x Metal', qtd: area * 4, unit: 'un' },
-            { name: 'Fita de Papel', qtd: area * 2, unit: 'm' },
-            { name: 'Massa de Junta', qtd: area * 0.6, unit: 'kg' },
-            { name: 'Arame/Tirante', qtd: area * 1.5, unit: 'un' }
-        ],
+        'Forro Drywall': (area, sheetSize) => {
+            // Define area da chapa: 240 -> 2.88m², 180 -> 2.16m²
+            const sheetArea = (sheetSize === '180') ? 2.16 : 2.88;
+            const sheetName = (sheetSize === '180') ? 'Chapa ST 1.20x1.80' : 'Chapa ST 1.20x2.40';
+            
+            return [
+                { name: sheetName, qtd: (area / sheetArea) * 1.05, unit: 'un' }, 
+                { name: 'Perfil F530', qtd: area * 2.5, unit: 'm' }, 
+                { name: 'Canaleta/Tabica (Perímetro Est.)', qtd: Math.sqrt(area) * 4, unit: 'm' }, 
+                { name: 'Parafuso GN25', qtd: area * 30, unit: 'un' },
+                { name: 'Parafuso Metal x Metal', qtd: area * 4, unit: 'un' },
+                { name: 'Fita de Papel', qtd: area * 2, unit: 'm' },
+                { name: 'Massa de Junta', qtd: area * 0.6, unit: 'kg' },
+                { name: 'Arame/Tirante', qtd: area * 1.5, unit: 'un' }
+            ];
+        },
         'Forro Plaquinha': (area) => [
             { name: 'Placa 60x60', qtd: (area / 0.36) * 1.05, unit: 'un' },
             { name: 'Gesso em Pó (Saco 40kg)', qtd: area / 15, unit: 'sc' },
@@ -925,36 +1014,72 @@
             { name: 'Arame Galvanizado', qtd: area * 0.12, unit: 'kg' },
             { name: 'Junta de Dilatação (Estimativa)', qtd: Math.sqrt(area) * 4, unit: 'm' }
         ],
-        'Parede Drywall': (area) => [
-             { name: 'Chapa Drywall ST (1.20x2.40)', qtd: ((area * 2) / 2.88) * 1.05, unit: 'un' },
-             { name: 'Montante 48/70/90', qtd: area * 2.2, unit: 'm' },
-             { name: 'Guia 48/70/90', qtd: Math.sqrt(area) * 2, unit: 'm' },
-             { name: 'Parafuso GN25', qtd: area * 30, unit: 'un' },
-             { name: 'Fita de Papel', qtd: area * 3, unit: 'm' }, 
-             { name: 'Massa de Junta', qtd: area * 0.9, unit: 'kg' },
-             { name: 'Banda Acústica (Opcional)', qtd: Math.sqrt(area) * 2, unit: 'm' }
-        ],
+        'Parede Drywall': (area, sheetSize) => {
+             const sheetArea = (sheetSize === '180') ? 2.16 : 2.88;
+             const sheetName = (sheetSize === '180') ? 'Chapa ST 1.20x1.80' : 'Chapa ST 1.20x2.40';
+
+             return [
+                 { name: sheetName, qtd: ((area * 2) / sheetArea) * 1.05, unit: 'un' }, // 2 lados
+                 { name: 'Montante 48/70/90', qtd: area * 2.2, unit: 'm' },
+                 { name: 'Guia 48/70/90', qtd: Math.sqrt(area) * 2, unit: 'm' },
+                 { name: 'Parafuso GN25', qtd: area * 30, unit: 'un' },
+                 { name: 'Fita de Papel', qtd: area * 3, unit: 'm' }, 
+                 { name: 'Massa de Junta', qtd: area * 0.9, unit: 'kg' },
+                 { name: 'Banda Acústica (Opcional)', qtd: Math.sqrt(area) * 2, unit: 'm' }
+            ];
+        },
         'Revestimento de Parede': (area) => [
              { name: 'Placa 60x60', qtd: (area / 0.36) * 1.05, unit: 'un' },
              { name: 'Gesso Cola', qtd: area * 1.5, unit: 'kg' }, 
         ],
-        'Revestimento Drywall': (area) => [
-             { name: 'Chapa Drywall ST (1.20x2.40)', qtd: (area / 2.88) * 1.05, unit: 'un' },
-             { name: 'Gesso Cola', qtd: area * 2.5, unit: 'kg' }, 
-             { name: 'Massa de Junta', qtd: area * 0.4, unit: 'kg' },
-             { name: 'Fita de Papel', qtd: area * 1.5, unit: 'm' }
-        ],
+        'Revestimento Drywall': (area, sheetSize) => {
+             const sheetArea = (sheetSize === '180') ? 2.16 : 2.88;
+             const sheetName = (sheetSize === '180') ? 'Chapa ST 1.20x1.80' : 'Chapa ST 1.20x2.40';
+
+             return [
+                 { name: sheetName, qtd: (area / sheetArea) * 1.05, unit: 'un' },
+                 { name: 'Gesso Cola', qtd: area * 2.5, unit: 'kg' }, 
+                 { name: 'Massa de Junta', qtd: area * 0.4, unit: 'kg' },
+                 { name: 'Fita de Papel', qtd: area * 1.5, unit: 'm' }
+             ];
+        },
         'Forro PVC': (area) => [
             { name: 'Lâminas de PVC', qtd: area * 1.05, unit: 'm²' },
             { name: 'Perfil Metalom 15x15 (Estrutura)', qtd: area * 3, unit: 'm' }, 
             { name: 'Acabamento (Meia Cana/Moldura)', qtd: Math.sqrt(area) * 4, unit: 'm' },
             { name: 'Parafusos/Fixadores', qtd: area * 10, unit: 'un' },
             { name: 'Arame/Suspensão', qtd: area * 1.5, unit: 'un' }
-        ]
+        ],
+        'Forro Aramado Dilatado': (area) => [
+             { name: 'Placa 60x60', qtd: (area / 0.36) * 1.05, unit: 'un' },
+             { name: 'Gesso em Pó (Saco 40kg)', qtd: area / 15, unit: 'sc' },
+             { name: 'Sisal', qtd: area * 0.05, unit: 'kg' },
+             { name: 'Arame Galvanizado', qtd: area * 0.12, unit: 'kg' },
+             { name: 'Tabica/Dilatação', qtd: Math.sqrt(area) * 4, unit: 'm' }
+        ],
+        'Forro Plaquinha Colado': (area) => [
+             { name: 'Placa 60x60', qtd: (area / 0.36) * 1.05, unit: 'un' },
+             { name: 'Gesso Cola', qtd: area * 2, unit: 'kg' } // ~2kg/m²
+        ],
+        'Forro Drywall Estruturado Montante': (area, sheetSize) => {
+            const sheetArea = (sheetSize === '180') ? 2.16 : 2.88;
+            const sheetName = (sheetSize === '180') ? 'Chapa ST 1.20x1.80' : 'Chapa ST 1.20x2.40';
+            
+            return [
+                { name: sheetName, qtd: (area / sheetArea) * 1.05, unit: 'un' },
+                { name: 'Montante 48/70/90', qtd: area * 2.2, unit: 'm' }, 
+                { name: 'Guia 48/70/90', qtd: Math.sqrt(area) * 2, unit: 'm' }, 
+                { name: 'Regulador para Montante', qtd: area * 1.5, unit: 'un' },
+                { name: 'Parafuso GN25', qtd: area * 30, unit: 'un' },
+                { name: 'Parafuso Metal x Metal', qtd: area * 4, unit: 'un' },
+                { name: 'Fita de Papel', qtd: area * 2, unit: 'm' },
+                { name: 'Massa de Junta', qtd: area * 0.6, unit: 'kg' }
+            ];
+        }
     };
 
     // VERSÃO DO APP
-    const APP_VERSION = '2.2';
+    const APP_VERSION = '3.0';
 
     let services = [];
     let calculationResult = null;
@@ -968,12 +1093,26 @@
         // Exibir versão
         const vDisplay = document.getElementById('appVersionDisplay');
         if(vDisplay) vDisplay.innerText = APP_VERSION;
+        
+        // Listener for Sheet Size Toggle
+        const serviceSelect = document.getElementById('serviceTypeInput');
+        if(serviceSelect) {
+            serviceSelect.addEventListener('change', function() {
+                const val = this.value;
+                const sheetSelector = document.getElementById('sheetSizeSelector');
+                // Show if "Drywall" is in the name
+                if(val.includes('Drywall')) {
+                    sheetSelector.classList.remove('hidden');
+                } else {
+                    sheetSelector.classList.add('hidden');
+                }
+            });
+        }
     }
 
     // --- ATUALIZAÇÃO ---
     function verificarAtualizacao() {
         showConfirm('Isso irá recarregar o aplicativo para buscar a versão mais recente do site. Deseja continuar?', () => {
-            // Truque de cache busting
             const novaUrl = window.location.pathname + '?update=' + new Date().getTime();
             window.location.href = novaUrl;
         });
@@ -1002,7 +1141,6 @@
                 row.className = 'flex justify-between items-center bg-white p-2.5 rounded-lg border border-slate-100 shadow-sm';
                 
                 let deleteBtn = '';
-                // Verifica se o option pertence ao grupo de customizados
                 if(opt.parentElement && opt.parentElement.id === 'customServicesOptGroup') {
                     deleteBtn = `<button onclick="deletarServicoCustomizado('${opt.value}')" class="ml-2 text-red-400 hover:text-red-600 p-1.5"><i class="fa-solid fa-trash-can text-xs"></i></button>`;
                 }
@@ -1059,10 +1197,9 @@
 
         localStorage.setItem('gessoMasterPrefs', JSON.stringify(prefs));
         
-        // RECARREGA TUDO PARA EVITAR BUG DE CAMPOS VAZIOS
         renderCustomServices();
         initPriceTable();
-        loadPreferences(); // Garante que os valores voltam para os inputs
+        loadPreferences(); 
         
         document.getElementById('newServiceName').value = '';
         document.getElementById('newServicePrice').value = '';
@@ -1074,14 +1211,13 @@
             const prefs = JSON.parse(localStorage.getItem('gessoMasterPrefs') || '{}');
             if(prefs.customServices) {
                 prefs.customServices = prefs.customServices.filter(s => s.name !== name);
-                // Opcional: remover também o preço salvo para limpar o JSON
                 if(prefs.servicePrices && prefs.servicePrices[name]) delete prefs.servicePrices[name];
                 
                 localStorage.setItem('gessoMasterPrefs', JSON.stringify(prefs));
                 
                 renderCustomServices();
                 initPriceTable();
-                loadPreferences(); // Recarrega valores
+                loadPreferences(); 
                 
                 showToast("Serviço excluído.");
             }
@@ -1103,7 +1239,6 @@
         'Rodateto Decorado': 'm',
         'Nicho Embutido': 'un',
         'Sanca de PVC': 'm',
-        // O restante assume m²
     };
 
     const serviceSelect = document.getElementById('serviceTypeInput');
@@ -1140,10 +1275,14 @@
             profitMargin: document.getElementById('profitMargin').value,
             servicePrices: servicePrices,
             sheet: document.getElementById('priceSheet').value,
+            sheet180: document.getElementById('priceSheet180').value,
             profile: document.getElementById('priceProfile').value,
             screw: document.getElementById('priceScrew').value,
             compound: document.getElementById('priceCompound').value,
-            companyLogo: tempLogoBase64 // Save the base64 string for logo
+            companyLogo: tempLogoBase64,
+            companyPhone: document.getElementById('companyPhone').value,
+            companyPix: document.getElementById('companyPix').value,
+            companyDoc: document.getElementById('companyDoc').value
         };
         const mainTotalExtra = document.getElementById('totalExtraCost');
         if(mainTotalExtra) preferences.totalExtraCost = mainTotalExtra.value;
@@ -1153,7 +1292,6 @@
     }
 
     function loadPreferences() {
-        // Assegura que a ordem de renderização está correta
         renderCustomServices();
         initPriceTable();
         const prefs = JSON.parse(localStorage.getItem('gessoMasterPrefs'));
@@ -1165,6 +1303,11 @@
                 document.getElementById('profitMargin').value = prefs.profitMargin;
                 document.getElementById('profitDisplayConfig').innerText = prefs.profitMargin + '%';
             }
+            if(prefs.sheet) document.getElementById('priceSheet').value = prefs.sheet;
+            if(prefs.sheet) document.getElementById('configPriceSheet').value = prefs.sheet;
+            if(prefs.sheet180) document.getElementById('priceSheet180').value = prefs.sheet180;
+            if(prefs.sheet180) document.getElementById('configPriceSheet180').value = prefs.sheet180;
+
             if(prefs.servicePrices) {
                 for (const [key, value] of Object.entries(prefs.servicePrices)) {
                     const inputId = 'price_svc_' + key.replace(/\s+/g, '_');
@@ -1172,13 +1315,15 @@
                     if(el) el.value = value;
                 }
             }
-            // Load Logo
             if (prefs.companyLogo) {
                 tempLogoBase64 = prefs.companyLogo;
                 const preview = document.getElementById('logoPreview');
                 preview.innerHTML = `<img src="${prefs.companyLogo}" class="w-full h-full object-contain">`;
                 document.getElementById('btnRemoveLogo').classList.remove('hidden');
             }
+            if(prefs.companyPhone) document.getElementById('companyPhone').value = prefs.companyPhone;
+            if(prefs.companyPix) document.getElementById('companyPix').value = prefs.companyPix;
+            if(prefs.companyDoc) document.getElementById('companyDoc').value = prefs.companyDoc;
         }
     }
 
@@ -1256,13 +1401,16 @@
         const typeSelect = document.getElementById('serviceTypeInput');
         const areaInput = document.getElementById('areaInput');
         const customRateInput = document.getElementById('customRateInput');
-        const unitInput = document.getElementById('unitInput'); // Captura Unidade
+        const unitInput = document.getElementById('unitInput'); 
+        
+        const sheetSizeRadio = document.querySelector('input[name="sheetSize"]:checked');
+        const sheetSize = sheetSizeRadio ? sheetSizeRadio.value : '240';
         
         const type = typeSelect.value;
         const text = typeSelect.options[typeSelect.selectedIndex].text;
         const area = parseFloat(areaInput.value);
         const customRate = parseFloat(customRateInput.value);
-        const unit = unitInput.value || 'm²'; // Padrão m²
+        const unit = unitInput.value || 'm²'; 
         
         if (!area || area <= 0) { showToast("Quantidade/Metragem inválida.", true); return; }
         
@@ -1273,7 +1421,8 @@
             type, 
             typeText: text, 
             area, 
-            unit, // Salva unidade
+            unit, 
+            sheetSize: sheetSize,
             isCustom: false, 
             customRate: hasCustomRate ? customRate : null 
         });
@@ -1287,7 +1436,6 @@
         const price = parseFloat(document.getElementById('customPriceInput').value);
         if (!name) { showToast("Nome inválido.", true); return; }
         if (isNaN(price) || price < 0) { showToast("Valor inválido.", true); return; }
-        // Personalizados são tratados como 'verba' ou 'serviço', sem unidade específica de cálculo, mas podemos pôr 'vb' ou 'un' se quiser.
         services.push({ id: Date.now(), type: 'Personalizado', typeText: name, area: 1, unit: 'un', isCustom: true, fixedPrice: price });
         document.getElementById('customNameInput').value = ''; document.getElementById('customPriceInput').value = '';
         document.getElementById('customNameInput').focus(); renderServicesList();
@@ -1314,7 +1462,7 @@
             }
             document.getElementById('areaInput').value = item.area;
             document.getElementById('customRateInput').value = item.customRate || '';
-            document.getElementById('unitInput').value = item.unit || 'm²'; // Restaura unidade
+            document.getElementById('unitInput').value = item.unit || 'm²'; 
             document.getElementById('areaInput').focus();
         }
         removerServico(id);
@@ -1336,14 +1484,13 @@
         services.forEach(item => {
             let displayValue = '', iconClass = '', borderClass = '';
             const storedPrice = servicePrices[item.type] ? parseFloat(servicePrices[item.type]) : 0;
-            const unitLabel = item.unit || 'm²'; // Label para exibição
+            const unitLabel = item.unit || 'm²';
 
             if (item.isCustom) {
                 displayValue = formatMoney(item.fixedPrice);
                 iconClass = 'fa-pen-to-square text-detail bg-blue-50'; borderClass = 'border-blue-100'; totalCustom += item.fixedPrice;
             } else {
                 totalArea += item.area;
-                // Exibe a unidade correta (m², m, un)
                 if(item.customRate) { 
                     displayValue = `${item.area} ${unitLabel} x ${formatMoney(item.customRate)}`; 
                     borderClass = 'border-slate-300'; iconClass = 'fa-tag text-slate-700 bg-slate-100'; 
@@ -1373,25 +1520,20 @@
         const totalExtraCost = parseFloat(document.getElementById('totalExtraCost').value) || 0;
         const marginPercent = parseFloat(document.getElementById('profitMargin').value) || 0;
         
-        // --- MATERIAL ESTIMATION LOGIC ---
-        const materialAggregator = {}; // { 'Chapa': { qtd: 10, unit: 'un' } }
-
-        // Sort keys by length descending to ensure specific keys (like "Forro Plaquinha Dilatado") are found before generic ones ("Forro Plaquinha")
+        const materialAggregator = {}; 
         const sortedRecipeKeys = Object.keys(MATERIAL_RECIPES).sort((a, b) => b.length - a.length);
 
         services.forEach(s => {
-            // Price Calculation
             if(!s.isCustom) {
                 const wetKeywords = ['Plaquinha', 'Aramado', 'Beiral', 'Gesso 3D', 'Moldura', 'Gesso', 'Boiserie', 'Rodateto'];
                 const isWet = wetKeywords.some(keyword => s.typeText.includes(keyword) || s.type.includes(keyword));
                 if(isWet) plaquinhaArea += s.area; else drywallArea += s.area;
             }
 
-            // Material Estimation per service
             if (!s.isCustom) {
                 let recipeKey = sortedRecipeKeys.find(key => s.type.includes(key));
                 if (recipeKey) {
-                    const materials = MATERIAL_RECIPES[recipeKey](s.area);
+                    const materials = MATERIAL_RECIPES[recipeKey](s.area, s.sheetSize);
                     materials.forEach(mat => {
                         if (!materialAggregator[mat.name]) {
                             materialAggregator[mat.name] = { qtd: 0, unit: mat.unit };
@@ -1402,23 +1544,44 @@
             }
         });
 
-        // Simple cost estimation for internal profit logic (kept from previous version)
-        const pricesDrywall = { sheet: 38.00, profile: 18.00, screw: 15.00, tape: 25.00, compound: 45.00 };
+        const pricesDrywall = { 
+            sheet240: parseFloat(document.getElementById('priceSheet').value) || 38.00,
+            sheet180: parseFloat(document.getElementById('priceSheet180').value) || 28.00,
+            profile: 18.00, screw: 15.00, tape: 25.00, compound: 45.00 
+        };
         const pricesPlaque = { plaque: 3.50, plaster: 28.00, wire: 18.00, sisal: 12.00 };
 
         let costMaterialsDrywall = 0, costMaterialsPlaque = 0;
 
         if(drywallArea > 0) {
-            const qtdSheets = Math.ceil((drywallArea / 2.88) * 1.05); const qtdProfiles = Math.ceil((drywallArea * 2) / 3); const qtdScrewsPack = Math.ceil((drywallArea * 35) / 100); const qtdTapeRolls = Math.ceil((drywallArea * 2) / 90); const qtdCompoundBags = Math.ceil((drywallArea * 0.7) / 20);
-            costMaterialsDrywall = (qtdSheets * pricesDrywall.sheet) + (qtdProfiles * pricesDrywall.profile) + (qtdScrewsPack * pricesDrywall.screw) + (qtdTapeRolls * pricesDrywall.tape) + (qtdCompoundBags * pricesDrywall.compound);
+             let sheets240Cost = 0;
+             let sheets180Cost = 0;
+             
+             services.forEach(s => {
+                 if(!s.isCustom && s.type.includes('Drywall')) {
+                     const size = s.sheetSize || '240';
+                     const areaSheet = size === '180' ? 2.16 : 2.88;
+                     const factor = s.type.includes('Parede') ? 2 : 1; 
+                     const qtd = (s.area * factor / areaSheet) * 1.05;
+                     if(size === '180') sheets180Cost += qtd * pricesDrywall.sheet180;
+                     else sheets240Cost += qtd * pricesDrywall.sheet240;
+                 }
+             });
+
+             const qtdProfiles = Math.ceil((drywallArea * 2) / 3); 
+             const qtdScrewsPack = Math.ceil((drywallArea * 35) / 100); 
+             const qtdTapeRolls = Math.ceil((drywallArea * 2) / 90); 
+             const qtdCompoundBags = Math.ceil((drywallArea * 0.7) / 20);
+             
+             costMaterialsDrywall = sheets240Cost + sheets180Cost + (qtdProfiles * pricesDrywall.profile) + (qtdScrewsPack * pricesDrywall.screw) + (qtdTapeRolls * pricesDrywall.tape) + (qtdCompoundBags * pricesDrywall.compound);
         }
+
         if(plaquinhaArea > 0) {
             const qtdPlaques = Math.ceil((plaquinhaArea / 0.36) * 1.05); const qtdPlasterBags = Math.ceil(plaquinhaArea / 15); const qtdWireKg = Math.ceil(plaquinhaArea * 0.12); const qtdSisalKg = Math.ceil(plaquinhaArea * 0.05);
             costMaterialsPlaque = (qtdPlaques * pricesPlaque.plaque) + (qtdPlasterBags * pricesPlaque.plaster) + (qtdWireKg * pricesPlaque.wire) + (qtdSisalKg * pricesPlaque.sisal);
         }
         totalMaterialCost = costMaterialsDrywall + costMaterialsPlaque;
         
-        // Final Price Summation
         services.forEach(s => {
             let itemPrice = 0;
             if (s.isCustom) { itemPrice = s.fixedPrice; } 
@@ -1441,7 +1604,7 @@
             netProfit: netProfit,
             totalExpenses: totalExtraCost,
             discount: 0,
-            materialList: materialAggregator, // Storing the list here
+            materialList: materialAggregator, 
             servicesDetail: services.map(s => {
                 let val = 0;
                 if(s.isCustom) val = s.fixedPrice;
@@ -1449,9 +1612,12 @@
                 else if(servicePrices[s.type] && parseFloat(servicePrices[s.type]) > 0) val = s.area * parseFloat(servicePrices[s.type]);
                 else { const baseCost = s.area * 30; val = baseCost + (baseCost * (marginPercent / 100)); }
                 
-                // Lógica de exibição da junta no orçamento removida a pedido
-                
-                return { ...s, typeText: s.typeText, estimatedValue: val };
+                let finalText = s.typeText;
+                if(s.type.includes('Drywall')) {
+                     finalText += s.sheetSize === '180' ? ' [Chapa 1.80m]' : '';
+                }
+
+                return { ...s, typeText: finalText, estimatedValue: val };
             })
         };
 
@@ -1461,14 +1627,13 @@
         const elDetailCost = document.getElementById('detailCost'); if(elDetailCost) elDetailCost.innerText = formatMoney(totalExtraCost);
         const elProfitFinal = document.getElementById('detailProfitFinal'); if(elProfitFinal) elProfitFinal.innerText = formatMoney(netProfit);
         
-        // Reset Discount
         document.getElementById('discountInput').value = '';
         document.getElementById('detailDiscount').classList.add('hidden');
         
         salvarOrcamentoAtual();
         mostrarResultados();
     }
-
+    
     // --- NOVA FUNÇÃO DE DESCONTO ---
     function aplicarDesconto() {
         if(!calculationResult) return;
@@ -1499,16 +1664,24 @@
     }
 
     function enviarWhatsApp() {
-        // ... existing whatsapp function ...
         if (!calculationResult) return;
         let phone = calculationResult.clientPhone.replace(/\D/g, ''); 
         const name = calculationResult.clientName;
         const company = calculationResult.companyName; 
         const total = formatMoney(calculationResult.salePrice);
-        // Ajuste no WhatsApp para mostrar unidade
+        
+        // Get Toggle State
+        const includeMeasures = document.getElementById('toggleMeasurements').checked;
+
+        // Get PIX from Config Inputs (loaded from prefs)
+        const pixKey = document.getElementById('companyPix').value;
+        
         const servicesList = calculationResult.servicesDetail.map(s => { 
-            let details = s.isCustom ? '(Extra)' : `(${s.area} ${s.unit || 'm²'})`; 
-            return `• ${s.typeText} ${details}`; 
+            let details = '';
+            if (includeMeasures) {
+                 details = s.isCustom ? ' (Extra)' : ` (${s.area} ${s.unit || 'm²'})`;
+            }
+            return `• ${s.typeText}${details}`; 
         }).join('\n');
         
         let discountMsg = "";
@@ -1516,7 +1689,21 @@
             discountMsg = `\n(Desconto aplicado: -${formatMoney(calculationResult.discount)})`;
         }
         
-        const message = `Olá, *${name}*! Tudo bem? 👋\n\nAqui é da *${company}*.\nConforme conversamos, segue o resumo do seu orçamento:\n\n${servicesList}\n\n💰 *Valor Total: ${total}*${discountMsg}\n\nPodemos agendar o início da obra?\nFico à disposição para tirar qualquer dúvida!`;
+        // Retrieve observation
+        const obsElement = document.getElementById('projectSummaryInput');
+        const obs = obsElement ? obsElement.value.trim() : "";
+        let obsMsg = "";
+        if(obs) {
+            obsMsg = `\n\n📝 *Observações:*\n${obs}`;
+        }
+        
+        let pixMsg = "";
+        if(pixKey) {
+            pixMsg = `\n\n🔑 *Chave PIX:* ${pixKey}`;
+        }
+
+        const message = `Olá, *${name}*! Tudo bem? 👋\n\nAqui é da *${company}*.\nConforme conversamos, segue o resumo do seu orçamento:\n\n${servicesList}\n\n💰 *Valor Total: ${total}*${discountMsg}${pixMsg}${obsMsg}\n\nPodemos agendar o início da obra?\nFico à disposição para tirar qualquer dúvida!`;
+        
         if (phone) { 
             if (phone.length >= 10 && phone.length <= 11 && !phone.startsWith('55')) phone = '55' + phone; 
             window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank'); 
@@ -1526,16 +1713,22 @@
 
     function gerarPDF() {
         if (!calculationResult) return;
+        
+        // ... (existing setup code) ...
+
+        // Get Toggle State
+        const includeMeasures = document.getElementById('toggleMeasurements').checked;
         const d = new Date();
         document.getElementById('pdfDate').innerText = d.toLocaleDateString('pt-BR');
         document.getElementById('pdfId').innerText = Math.floor(Math.random() * 9000) + 1000;
         const companyName = calculationResult.companyName;
-        
-        // READ CURRENT PREFS FOR LOGO (to ensure latest logo is used)
+
         const prefs = JSON.parse(localStorage.getItem('gessoMasterPrefs') || '{}');
         const logoBase64 = prefs.companyLogo;
+        const compPhone = prefs.companyPhone || "";
+        const compPix = prefs.companyPix || "";
+        const compDoc = prefs.companyDoc || "";
 
-        // Header Logic with Logo Support
         const headerEl = document.getElementById('pdfHeaderCompany');
         
         let companyNameHtml = 'GESSO<span style="color: #2563EB;">MASTER</span>';
@@ -1544,15 +1737,22 @@
         }
 
         if (logoBase64) {
-            // Display Logo AND Name side by side
-            headerEl.innerHTML = `
+             headerEl.innerHTML = `
                 <div style="display: flex; align-items: center; gap: 15px;">
-                    <img src="${logoBase64}" style="max-height: 70px; max-width: 250px; object-fit: contain;">
+                    <img src="${logoBase64}" style="height: 50px; width: auto; object-fit: contain;">
                     <span>${companyNameHtml}</span>
                 </div>`;
         } else {
-            // Display only Name
-            headerEl.innerHTML = companyNameHtml;
+             headerEl.innerHTML = companyNameHtml;
+        }
+        
+        // Add Phone to Header if exists
+        const phoneEl = document.getElementById('pdfHeaderPhone');
+        if(compPhone) {
+            phoneEl.innerText = compPhone;
+            phoneEl.style.display = 'block';
+        } else {
+            phoneEl.style.display = 'none';
         }
         
         // Footer name always text
@@ -1564,46 +1764,120 @@
         const tbody = document.getElementById('pdfServicesTableBody'); tbody.innerHTML = '';
         
         // Get custom summary or default
-        const customSummary = document.getElementById('projectSummaryInput').value.trim();
+        const summaryElement = document.getElementById('projectSummaryInput');
+        const customSummary = summaryElement ? summaryElement.value.trim() : "";
         const defaultSummary = "Este orçamento inclui fornecimento de material e mão de obra especializada.";
         document.getElementById('pdfProjectSummary').innerText = customSummary || defaultSummary;
 
+        // HEADER LOGIC (Toggle Column)
+        const headerTableEl = document.getElementById('pdfServicesTableHeader');
+        if (includeMeasures) {
+             headerTableEl.innerHTML = `
+                <tr style="background: #F1F5F9; color: #334155;">
+                    <th style="padding: 12px 15px; text-align: left; border-radius: 6px 0 0 6px;">Descrição do Serviço</th>
+                    <th style="padding: 12px 15px; text-align: center;">Qtd/Medida</th>
+                    <th style="padding: 12px 15px; text-align: right; border-radius: 0 6px 6px 0;">Valor Estimado</th>
+                </tr>`;
+        } else {
+             headerTableEl.innerHTML = `
+                <tr style="background: #F1F5F9; color: #334155;">
+                    <th style="padding: 12px 15px; text-align: left; border-radius: 6px 0 0 6px;">Descrição do Serviço</th>
+                    <th style="padding: 12px 15px; text-align: right; border-radius: 0 6px 6px 0;">Valor Estimado</th>
+                </tr>`;
+        }
+
         calculationResult.servicesDetail.forEach((s) => {
-            // Ajuste no PDF para mostrar unidade
             const areaDisplay = s.isCustom ? '-' : `${s.area} ${s.unit || 'm²'}`;
-            tbody.innerHTML += `<tr style="border-bottom: 1px solid #e5e7eb; page-break-inside: avoid;"><td style="padding: 12px 15px; color: #374151;">${s.typeText || s.type}</td><td style="padding: 12px 15px; text-align: center; color: #6b7280;">${areaDisplay}</td><td style="padding: 12px 15px; text-align: right; color: #111827; font-weight: 500;">${formatMoney(s.estimatedValue)}</td></tr>`;
+            
+            if (includeMeasures) {
+                 tbody.innerHTML += `<tr style="border-bottom: 1px solid #e5e7eb; page-break-inside: avoid;"><td style="padding: 12px 15px; color: #374151;">${s.typeText || s.type}</td><td style="padding: 12px 15px; text-align: center; color: #6b7280;">${areaDisplay}</td><td style="padding: 12px 15px; text-align: right; color: #111827; font-weight: 500;">${formatMoney(s.estimatedValue)}</td></tr>`;
+            } else {
+                 tbody.innerHTML += `<tr style="border-bottom: 1px solid #e5e7eb; page-break-inside: avoid;"><td style="padding: 12px 15px; color: #374151;">${s.typeText || s.type}</td><td style="padding: 12px 15px; text-align: right; color: #111827; font-weight: 500;">${formatMoney(s.estimatedValue)}</td></tr>`;
+            }
         });
         
-        // FOOTER DINAMICO PARA DESCONTO
+        // FOOTER LOGIC
         const tfoot = document.getElementById('pdfServicesTableFoot');
+        const colspan = includeMeasures ? 2 : 1;
+        
+        let footerHTML = '';
+
         if(calculationResult.discount > 0) {
-            tfoot.innerHTML = `
+            footerHTML += `
                 <tr style="border-top: 2px solid #E2E8F0;">
-                    <td colspan="2" style="padding: 10px 15px; text-align: right; color: #64748B;">Subtotal:</td>
+                    <td colspan="${colspan}" style="padding: 10px 15px; text-align: right; color: #64748B;">Subtotal:</td>
                     <td style="padding: 10px 15px; text-align: right; color: #64748B;">${formatMoney(calculationResult.grossPrice)}</td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="padding: 5px 15px; text-align: right; color: #F97316;">Desconto:</td>
+                    <td colspan="${colspan}" style="padding: 5px 15px; text-align: right; color: #F97316;">Desconto:</td>
                     <td style="padding: 5px 15px; text-align: right; color: #F97316;">- ${formatMoney(calculationResult.discount)}</td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="padding: 15px; text-align: right; font-weight: bold; color: #334155;">TOTAL GERAL:</td>
-                    <td style="padding: 15px; text-align: right; font-weight: 800; font-size: 20px; color: #0F172A;">${formatMoney(calculationResult.salePrice)}</td>
-                </tr>
-            `;
-        } else {
-             tfoot.innerHTML = `
-                <tr style="border-top: 2px solid #E2E8F0;">
-                    <td colspan="2" style="padding: 15px; text-align: right; font-weight: bold; color: #334155;">TOTAL GERAL DO SERVIÇO:</td>
+                </tr>`;
+        }
+        
+        const totalLabel = calculationResult.discount > 0 ? "TOTAL GERAL:" : "TOTAL GERAL DO SERVIÇO:";
+        
+        footerHTML += `
+                <tr ${calculationResult.discount <= 0 ? 'style="border-top: 2px solid #E2E8F0;"' : ''}>
+                    <td colspan="${colspan}" style="padding: 15px; text-align: right; font-weight: bold; color: #334155;">${totalLabel}</td>
                     <td style="padding: 15px; text-align: right; font-weight: 800; font-size: 20px; color: #0F172A;">${formatMoney(calculationResult.salePrice)}</td>
                 </tr>
              `;
+        
+        tfoot.innerHTML = footerHTML;
+        
+        // PAYMENT SECTION LOGIC (RESTAURADO)
+        const paySection = document.getElementById('pdfPaymentSection');
+        const pixContainer = document.getElementById('pdfPixContainer');
+        const docContainer = document.getElementById('pdfDocContainer');
+        const pixKeyEl = document.getElementById('pdfPixKey');
+        const docKeyEl = document.getElementById('pdfDocKey');
+
+        if(compPix || compDoc) {
+            paySection.style.display = 'block';
+            if(compPix) {
+                pixContainer.style.display = 'block';
+                pixKeyEl.innerText = compPix;
+            } else {
+                pixContainer.style.display = 'none';
+            }
+            if(compDoc) {
+                docContainer.style.display = 'block';
+                docKeyEl.innerText = compDoc;
+            } else {
+                docContainer.style.display = 'none';
+            }
+        } else {
+            paySection.style.display = 'none';
         }
         
-        const element = document.getElementById('pdf-template'); const wrapper = document.getElementById('pdf-wrapper');
-        wrapper.style.zIndex = "9999"; wrapper.style.height = "auto"; wrapper.style.overflow = "visible"; wrapper.style.backgroundColor = "white"; 
+        const element = document.getElementById('pdf-template'); 
+        const wrapper = document.getElementById('pdf-wrapper');
+        
+        // FIX: Prepare wrapper for capture by making it visible and on-screen
+        wrapper.style.visibility = "visible"; 
+        wrapper.style.left = "0"; 
+        wrapper.style.top = "0";
+        wrapper.style.zIndex = "9999"; 
+        
         const opt = { margin: 0, filename: `Orcamento_${calculationResult.clientName.replace(/\s+/g, '_')}.pdf`, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2, useCORS: true, scrollY: 0 }, jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } };
-        html2pdf().set(opt).from(element).save().then(() => { wrapper.style.zIndex = "-100"; wrapper.style.height = "0"; wrapper.style.overflow = "hidden"; });
+        
+        html2pdf().set(opt).from(element).save()
+        .then(() => { 
+            // Reset wrapper state
+            wrapper.style.zIndex = "-100"; 
+            wrapper.style.visibility = "hidden"; 
+            wrapper.style.left = "-9999px"; 
+            wrapper.style.height = "0"; 
+            wrapper.style.overflow = "hidden"; 
+        })
+        .catch(err => {
+            console.error(err);
+            showToast("Erro ao gerar PDF.", true);
+            // Ensure cleanup on error
+            wrapper.style.zIndex = "-100"; 
+            wrapper.style.visibility = "hidden"; 
+            wrapper.style.left = "-9999px";
+        });
     }
     
     // Iniciar
